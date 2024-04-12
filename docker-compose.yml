@@ -1,0 +1,19 @@
+version: "4"
+services:
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+
+  nats-streaming:
+    image: "nats-streaming:latest"
+
+    ports:
+      - "4222:4222"
+      - "8222:8222"
